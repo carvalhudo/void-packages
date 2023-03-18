@@ -6,7 +6,7 @@ build_style=gnu-configure
 make_build_args="SYSCONFDIR=/etc"
 hostmakedepends="autoconf automake pkg-config"
 makedepends="bash-completion"
-short_desc="Flexible scheduler for i3bar"
+short_desc="A feed generator for text based status bars"
 maintainer="André L. C. Moreira <alcm99@gmail.com>"
 license="GPL-3.0-or-later"
 homepage="https://github.com/vivien/i3blocks"
