@@ -599,7 +599,6 @@ Allowed values:
   - `ci-skip` to run locally if `XBPS_CHECK_PKGS` is set, but not as part of pull request checks.
   - `no` to never run.
 
-
 - `keep_libtool_archives` If enabled the `GNU Libtool` archives won't be removed. By default those
 files are always removed automatically.
 
