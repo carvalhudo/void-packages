@@ -1,0 +1,28 @@
+From 2dd6c6edd8e0fc5e45865b8e6d865e35147de772 Mon Sep 17 00:00:00 2001
+From: dirkf <fieldhouse@gmx.net>
+Date: Fri, 17 Feb 2023 11:16:54 +0000
+Subject: [PATCH 183/183] [YouTube] Avoid crash if uploader_id extraction fails
+
+See #31530.
+---
+ youtube_dl/extractor/youtube.py | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/youtube_dl/extractor/youtube.py b/youtube_dl/extractor/youtube.py
+index ba0f5c8b6..66b0257df 100644
+--- a/youtube_dl/extractor/youtube.py
++++ b/youtube_dl/extractor/youtube.py
+@@ -2122,7 +2122,9 @@ class YoutubeIE(YoutubeBaseInfoExtractor):
+                 microformat.get('uploadDate')
+                 or search_meta('uploadDate')),
+             'uploader': video_details['author'],
+-            'uploader_id': self._search_regex(r'/(?:channel|user)/([^/?&#]+)', owner_profile_url, 'uploader id') if owner_profile_url else None,
++            'uploader_id': self._search_regex(
++                r'/(?:channel|user)/([^/?&#]+)', owner_profile_url,
++                'uploader id', fatal=False) if owner_profile_url else None,
+             'uploader_url': owner_profile_url,
+             'channel_id': channel_id,
+             'channel_url': 'https://www.youtube.com/channel/' + channel_id if channel_id else None,
+-- 
+2.40.0
+
